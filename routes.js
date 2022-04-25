@@ -99,7 +99,7 @@ exports.deleteById = (req, res) => {
   const id = req.params.id;
   Sport.findOneAndDelete({ _id: id }, (err, result) => {
     if (err) {
-      res.send({
+      res.status(404).json({
         status: 404,
         msg: "Not found ☹️",
         err,
