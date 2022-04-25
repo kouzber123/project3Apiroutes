@@ -1,0 +1,27 @@
+{
+  "name": "restproject3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "tom",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.11",
+    "nodemon": "^2.0.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kouzber123/project3Apiroutes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kouzber123/project3Apiroutes/issues"
+  },
+  "homepage": "https://github.com/kouzber123/project3Apiroutes#readme",
+  "description": ""
+}
