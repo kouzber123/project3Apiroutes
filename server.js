@@ -39,6 +39,8 @@ app.get("/api/:id", routes.getByID);
 app.post("/api/add", routes.addSport);
 app.put("/api/update/:id", routes.updateById);
 app.delete("/api/delete/:id", routes.deleteById);
-app.listen(process.env.PORT || 3000, () => {
-  console.log("hello from port 3000");
+
+const port = process.env.PORT;
+app.listen(port || 3000, () => {
+  console.log("hello from port " + port);
 });
