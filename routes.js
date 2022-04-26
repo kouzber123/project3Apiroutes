@@ -54,7 +54,7 @@ exports.addSport = (req, res) => {
       sport.save();
       res.status(201).json({
         status: 201,
-        msg: "Successfully created",
+        msg: "Successfully created 🧚",
         sport
       });
       return;
