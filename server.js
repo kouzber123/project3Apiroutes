@@ -17,13 +17,19 @@ github > comment code  wip
 */
 
 //tier 1
+const dotenv = require("dotenv");
 const express = require("express");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/sportApi");
 const routes = require("./routes");
 const app = express();
 
 //middlewares
+dotenv.config({ path: "./config.env" });
+
+const DB = process.env.DATABASE.replace("<PASSWORD>", process.env.DATABASE_PASSWORD);
+
+mongoose.connect(DB).then(() => console.log("DB connection successful!"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -34,6 +40,6 @@ app.post("/api/add", routes.addSport);
 app.put("/api/update/:id", routes.updateById);
 app.delete("/api/delete/:id", routes.deleteById);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log("hello from port 3000");
 });
