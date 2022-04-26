@@ -5,12 +5,12 @@ const { Schema } = mongoose;
 const sportSchema = new Schema({
   title: {
     type: String,
-    required: [true, "Title is required!"],
+    required: [true, "Title is required!"]
   },
   body: {
     type: String,
-    required: [true, "Body is required!"],
-  },
+    required: [true, "Body is required!"]
+  }
 });
 
 //MODEL
@@ -19,7 +19,7 @@ const Sport = mongoose.model("Sport", sportSchema);
 const e = () => {
   f = {
     status: 404,
-    err,
+    err
   };
 };
 
@@ -39,19 +39,19 @@ exports.getAllSports = (req, res) => {
 exports.addSport = (req, res) => {
   const sport = new Sport({
     title: req.body.title,
-    body: req.body.body,
+    body: req.body.body
   });
   if (sport.title == "" || sport.body == "") {
     res.status(404).json({
       status: 404,
-      msg: "Must contain title and content",
+      msg: "Must contain title and content"
     });
   } else {
     sport.save();
     res.status(201).json({
       status: 201,
       msg: "Successfully created",
-      sport,
+      sport
     });
   }
 };
@@ -63,36 +63,32 @@ exports.getByID = (req, res) => {
       res.status(404).json({
         status: 404,
         err,
-        msg: "Not found ☹️",
+        msg: "Not found ☹️"
       });
     }
     res.status(200).json({
       status: 200 + " Ok 👌",
-      result,
+      result
     });
   });
 };
 
 exports.updateById = (req, res) => {
   const id = req.params.id;
-  Sport.findOneAndUpdate(
-    { _id: id },
-    { $set: { title: req.body.title, body: req.body.body } },
-    (err, result) => {
-      if (err) {
-        res.status(404).json({
-          status: 404,
-          msg: "Not found ☹️",
-          err,
-        });
-      } else {
-        res.status(200).json({
-          status: 200,
-          msg: "Updated 🤌",
-        });
-      }
+  Sport.findOneAndUpdate({ _id: id }, { $set: { title: req.body.title, body: req.body.body } }, (err, result) => {
+    if (err) {
+      res.status(404).json({
+        status: 404,
+        msg: "Not found ☹️",
+        err
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        msg: "Updated 🤌"
+      });
     }
-  );
+  });
 };
 
 exports.deleteById = (req, res) => {
@@ -102,12 +98,12 @@ exports.deleteById = (req, res) => {
       res.status(404).json({
         status: 404,
         msg: "Not found ☹️",
-        err,
+        err
       });
     }
     res.status(200).json({
       status: 200,
-      msg: "Deleted 🤌",
+      msg: "Deleted 🏴‍☠️"
     });
   });
 };
