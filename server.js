@@ -42,5 +42,5 @@ app.delete("/api/delete/:id", routes.deleteById);
 
 const port = process.env.PORT;
 app.listen(port || 3000, () => {
-  console.log("hello from port " + port);
+  console.log("hello 🤣 from port " + port);
 });
