@@ -23,6 +23,8 @@ const e = () => {
   };
 };
 
+//routes > actions
+
 exports.getAllSports = (req, res) => {
   Sport.find({}, (err, result) => {
     if (err) {
@@ -35,7 +37,7 @@ exports.getAllSports = (req, res) => {
     }
   });
 };
-//routes > actions
+
 exports.addSport = (req, res) => {
   const sport = new Sport({
     title: req.body.title,
