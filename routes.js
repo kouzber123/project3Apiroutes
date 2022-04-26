@@ -103,7 +103,7 @@ exports.deleteById = (req, res) => {
     }
     res.status(200).json({
       status: 200,
-      msg: "Deleted 🏴‍☠️"
+      msg: "Deleted 🚮"
     });
   });
 };
