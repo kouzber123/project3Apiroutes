@@ -39,22 +39,29 @@ exports.getAllSports = (req, res) => {
 };
 
 exports.addSport = (req, res) => {
-  const sport = new Sport({
-    title: req.body.title,
-    body: req.body.body
-  });
-  if (sport.title == "" || sport.body == "") {
-    res.status(404).json({
-      status: 404,
-      msg: "Must contain title and content"
-    });
-  } else {
-    sport.save();
-    res.status(201).json({
-      status: 201,
-      msg: "Successfully created",
-      sport
-    });
+  try {
+    //check if url contains title and body
+    if (!req.body.title || !req.body.body) {
+      res.status(404).json({
+        status: 404,
+        msg: "Must contain title and content"
+      });
+    } else {
+      const sport = new Sport({
+        title: req.body.title,
+        body: req.body.body
+      });
+      sport.save();
+      res.status(201).json({
+        status: 201,
+        msg: "Successfully created",
+        sport
+      });
+      return;
+    }
+    return;
+  } catch (error) {
+    console.log("Something happened");
   }
 };
 

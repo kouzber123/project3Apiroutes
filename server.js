@@ -1,17 +1,17 @@
 /*
-Create REST API for your app e.g. musci / sports / project db done
+Create REST API for your app e.g.  sports / project db done
 
 create at least 5 routes : done
-send response as json, wip
-handle errors properly,  wipgit 
-send status codes to client 
+send response as json, done
+handle errors properly,  done
+send status codes to client  done
 implement more routes as well (optional) wip
 
 use mongoose in ap db queries done
 
 test with postman  done 
 
-publis to heroku wip
+publis to heroku ....soon
 
 github > comment code  wip
 */
@@ -39,7 +39,6 @@ app.get("/api/:id", routes.getByID);
 app.post("/api/add", routes.addSport);
 app.put("/api/update/:id", routes.updateById);
 app.delete("/api/delete/:id", routes.deleteById);
-
 app.listen(process.env.PORT || 3000, () => {
   console.log("hello from port 3000");
 });
