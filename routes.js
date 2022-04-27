@@ -17,7 +17,9 @@ const sportSchema = new Schema({
 const Sport = mongoose.model("Sport", sportSchema);
 
 //routes > actions points
-/* Using try catch block to handle errors related to finding correct id */
+/* Using try catch block to handle errors related to finding correct id 
+   Using returns after every request etc. to end the request / call immediately to avoid overloads
+*/
 
 //when user inputs bad endpoint
 exports.generalMessage = (req, res) => {
@@ -114,6 +116,12 @@ exports.updateById = (req, res) => {
           status: 404,
           msg: "Not found ☹️",
           err
+        });
+        return;
+      } else if (!req.body.title || !req.body.body) {
+        res.status(400).json({
+          status: 400,
+          msg: "Must contain title and content 😠💢"
         });
         return;
       } else {
