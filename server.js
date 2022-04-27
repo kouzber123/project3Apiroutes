@@ -39,6 +39,8 @@ app.get("/api/:id", routes.getByID);
 app.post("/api/add", routes.addSport);
 app.put("/api/update/:id", routes.updateById);
 app.delete("/api/delete/:id", routes.deleteById);
+
+//end point for all invalid routes
 app.get("*", routes.generalMessage);
 const port = process.env.PORT;
 app.listen(port || 3000, () => {

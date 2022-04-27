@@ -16,27 +16,35 @@ const sportSchema = new Schema({
 //MODEL
 const Sport = mongoose.model("Sport", sportSchema);
 
-//routes > actions
+//routes > actions points
+
+//when user inputs bad endpoint
 exports.generalMessage = (req, res) => {
   res.status(404).json({
     status: 404,
-    msg: "Hello, are you lost? you browsing in wrong endpoint! 🤡"
+    msg: "Hello, are you lost? you browsing in wrong endpoint! 🤡 consider reading the document!"
   });
 };
-
+//get all except when db empty then send
 exports.getAllSports = (req, res) => {
   Sport.find({}, (err, result) => {
     if (err) {
-      res.status(404).json({
-        status: 404,
-        msg: "Must contain title and content"
+      res.status(400).json({
+        status: 400,
+        msg: "This isnt even possible 🤡 you clown"
       });
       return;
     }
     if (result == "") {
-      res.send("Database is empty start filling it 😒");
+      res.status(204).json({
+        status: 204,
+        msg: "Database is empty, go to the postman and start filling it 😯"
+      });
     } else {
-      res.send(result);
+      res.status(200).json({
+        status: 200,
+        result
+      });
       return;
     }
   });
@@ -119,9 +127,10 @@ exports.deleteById = (req, res) => {
       });
       return;
     }
-    res.status(200).json({
-      status: 200,
-      msg: "Deleted 🚮"
+    res.status(202).json({
+      status: 202,
+      msg: "Accepted and Deleted 🚮",
+      result
     });
     return;
   });
