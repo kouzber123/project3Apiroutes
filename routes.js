@@ -16,24 +16,19 @@ const sportSchema = new Schema({
 //MODEL
 const Sport = mongoose.model("Sport", sportSchema);
 
-const e = () => {
-  f = {
-    status: 404,
-    err
-  };
-};
-
 //routes > actions
 
 exports.getAllSports = (req, res) => {
   Sport.find({}, (err, result) => {
     if (err) {
       console.log(err);
+      return;
     }
     if (result == "") {
       res.send("Database is empty start filling it 😒");
     } else {
       res.send(result);
+      return;
     }
   });
 };
@@ -46,6 +41,7 @@ exports.addSport = (req, res) => {
         status: 404,
         msg: "Must contain title and content"
       });
+      return;
     } else {
       const sport = new Sport({
         title: req.body.title,
@@ -59,7 +55,6 @@ exports.addSport = (req, res) => {
       });
       return;
     }
-    return;
   } catch (error) {
     console.log("Something happened");
   }
@@ -74,11 +69,13 @@ exports.getByID = (req, res) => {
         err,
         msg: "Not found ☹️"
       });
+      return;
     }
     res.status(200).json({
       status: 200 + " Ok 👌",
       result
     });
+    return;
   });
 };
 
@@ -91,11 +88,13 @@ exports.updateById = (req, res) => {
         msg: "Not found ☹️",
         err
       });
+      return;
     } else {
       res.status(200).json({
         status: 200,
         msg: "Updated 🤌"
       });
+      return;
     }
   });
 };
@@ -109,10 +108,12 @@ exports.deleteById = (req, res) => {
         msg: "Not found ☹️",
         err
       });
+      return;
     }
     res.status(200).json({
       status: 200,
       msg: "Deleted 🚮"
     });
+    return;
   });
 };
