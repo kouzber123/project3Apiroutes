@@ -18,14 +18,19 @@ const Sport = mongoose.model("Sport", sportSchema);
 
 //routes > actions
 exports.generalMessage = (req, res) => {
-  res.send("Welcome to the sports api app, unfortunately you are in a wrong route use /api/{endpoints}");
-  window.prompt("Hello you are in a wrong route!");
+  res.status(404).json({
+    status: 404,
+    msg: "Hello, are you lost? you browsing in wrong endpoint! 🤡"
+  });
 };
 
 exports.getAllSports = (req, res) => {
   Sport.find({}, (err, result) => {
     if (err) {
-      console.log(err);
+      res.status(404).json({
+        status: 404,
+        msg: "Must contain title and content"
+      });
       return;
     }
     if (result == "") {
