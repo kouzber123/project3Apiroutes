@@ -87,12 +87,13 @@ exports.getByID = (req, res) => {
         msg: "Not found ☹️"
       });
       return;
+    } else {
+      res.status(200).json({
+        status: 200 + " Ok 👌",
+        result
+      });
+      return;
     }
-    res.status(200).json({
-      status: 200 + " Ok 👌",
-      result
-    });
-    return;
   });
 };
 
@@ -126,12 +127,13 @@ exports.deleteById = (req, res) => {
         err
       });
       return;
+    } else {
+      res.status(202).json({
+        status: 202,
+        msg: "Accepted and Deleted 🚮",
+        result
+      });
+      return;
     }
-    res.status(202).json({
-      status: 202,
-      msg: "Accepted and Deleted 🚮",
-      result
-    });
-    return;
   });
 };
