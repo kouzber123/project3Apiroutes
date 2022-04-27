@@ -17,6 +17,10 @@ const sportSchema = new Schema({
 const Sport = mongoose.model("Sport", sportSchema);
 
 //routes > actions
+exports.generalMessage = (req, res) => {
+  res.send("Welcome to the sports api app, unfortunately you are in a wrong route use /api/{endpoints}");
+  window.prompt("Hello you are in a wrong route!");
+};
 
 exports.getAllSports = (req, res) => {
   Sport.find({}, (err, result) => {

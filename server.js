@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //routes
+app.get("/*", routes.generalMessage);
 app.get("/api/getall", routes.getAllSports);
 app.get("/api/:id", routes.getByID);
 app.post("/api/add", routes.addSport);
