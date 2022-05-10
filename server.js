@@ -19,7 +19,7 @@ app.use(express.json());
 
 //routes
 app.get("/api/getall", routes.getAllSports);
-app.get("/api/sport/title", routes.search);
+app.get("/api/sport/:title", routes.search);
 app.get("/api/:id", routes.getByID);
 app.post("/api/add", routes.addSport);
 app.put("/api/update/:id", routes.updateById);
