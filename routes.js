@@ -53,6 +53,15 @@ exports.getAllSports = (req, res) => {
     }
   });
 };
+exports.search = function (req, res) {
+  Post.search(req.body.title)
+    .then(posts => {
+      res.json(posts);
+    })
+    .catch(e => {
+      res.json([]);
+    });
+};
 
 exports.addSport = (req, res) => {
   try {
