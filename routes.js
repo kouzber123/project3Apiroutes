@@ -54,13 +54,26 @@ exports.getAllSports = (req, res) => {
   });
 };
 exports.search = function (req, res) {
-  Sport.findOne({ title: req.params.title })
-    .then(posts => {
-      res.json(posts);
-    })
-    .catch(e => {
-      res.json([]);
+  try {
+    Sport.findOne({ title: req.params.title }, (err, result) => {
+      if (!result) {
+        res.status(404).json({
+          status: 404,
+          err,
+          msg: "Not found ☹️"
+        });
+        return;
+      } else {
+        res.status(200).json({
+          status: 200 + " Ok 👌",
+          result
+        });
+        return;
+      }
     });
+  } catch (e) {
+    console.log("there was error");
+  }
 };
 
 exports.addSport = (req, res) => {
