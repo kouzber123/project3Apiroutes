@@ -54,7 +54,7 @@ exports.getAllSports = (req, res) => {
   });
 };
 exports.search = function (req, res) {
-  Sport.findOne({ title: req.body.title })
+  Sport.findOne({ title: req.params.title })
     .then(posts => {
       res.json(posts);
     })
