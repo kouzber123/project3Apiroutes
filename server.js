@@ -1,10 +1,12 @@
 //tier 1
 const dotenv = require("dotenv");
 const express = require("express");
+
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-
+var cors = require("cors");
+app.use(cors());
 //middlewares
 dotenv.config({ path: "./config.env" });
 
