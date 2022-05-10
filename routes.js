@@ -53,7 +53,7 @@ exports.getAllSports = (req, res) => {
     }
   });
 };
-exports.search = function (req, res) {
+exports.search = (req, res) => {
   try {
     Sport.findOne({ title: req.params.title }, (err, result) => {
       if (!result) {
