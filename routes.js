@@ -64,11 +64,10 @@ exports.search = function (req, res) {
         });
         return;
       } else {
-        res.status(200).json({
+        return res.status(200).json({
           status: 200 + " Ok 👌",
           result
         });
-        return;
       }
     });
   } catch (e) {
