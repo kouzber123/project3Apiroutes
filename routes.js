@@ -57,12 +57,11 @@ exports.search = (req, res) => {
   try {
     Sport.findOne({ title: req.params.title }, (err, result) => {
       if (!result) {
-        res.status(404).json({
+        return res.status(404).json({
           status: 404,
           err,
           msg: "Not found ☹️"
         });
-        return;
       } else {
         return res.status(200).json({
           status: 200 + " Ok 👌",
@@ -71,7 +70,7 @@ exports.search = (req, res) => {
       }
     });
   } catch (e) {
-    console.log("there was error");
+    return e;
   }
 };
 
