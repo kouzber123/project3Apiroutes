@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
 
+let Post = function (data, userid, requestedPostId) {
+  this.data = data;
+  this.errors = [];
+  this.userid = userid;
+  this.requestedPostId = requestedPostId;
+};
+
 //SCHEMA
 const { Schema } = mongoose;
 const sportSchema = new Schema({
@@ -53,25 +60,15 @@ exports.getAllSports = (req, res) => {
     }
   });
 };
-exports.search = (req, res) => {
-  try {
-    Sport.findOne({ title: req.params.title }, (err, result) => {
-      if (!result) {
-        return res.status(404).json({
-          status: 404,
-          err,
-          msg: "Not found ☹️"
-        });
-      } else {
-        return res.status(200).json({
-          status: 200 + " Ok 👌",
-          result
-        });
-      }
-    });
-  } catch (e) {
-    return e;
-  }
+exports.search = Post.search = function (searchTerm) {
+  return new Promise(async (resolve, reject) => {
+    if (typeof searchTerm == "string") {
+      let posts = await Post.reusablePostQuery([{ $match: { $text: { $search: searchTerm } } }], undefined, [{ $sort: { score: { $meta: "textScore" } } }]);
+      resolve(posts);
+    } else {
+      reject();
+    }
+  });
 };
 
 exports.addSport = (req, res) => {
